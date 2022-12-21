@@ -70,9 +70,9 @@
 
                         </tr>
 
-                </tbody>
+                        @endforeach
+                    </tbody>
             </table>
-            @endforeach
         </div>
     </div>
 @endsection

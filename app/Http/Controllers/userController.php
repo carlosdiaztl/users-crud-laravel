@@ -53,7 +53,7 @@ class userController extends Controller
             'lastName'=>$request->lastName,
             'email'=>$request->email,
             'phone'=>$request->phone,
-            'password'=>$request->password,
+            'password'=>bcrypt($request->password),
             'identification'=>$request->identification
         ]);
 
@@ -107,15 +107,17 @@ class userController extends Controller
             'lastName' => "required|max:20|string",
             'email' => "required|max:30|string",
             'phone' => "required|max:20|string",
-            'identification' => "required|max:20|int"
+            'password' => "required|max:20|string",
+            'identification' => "required|integer"
         ]);
 
 
-        $user = User::create([
+        $user ->update([
             'name'=>$request->name,
             'lastName'=>$request->lastName,
             'email'=>$request->email,
             'phone'=>$request->phone,
+            'password'=>bcrypt($request->password),
             'identification'=>$request->identification
         ]);
 

@@ -61,6 +61,13 @@
                         {{ $message }}
                     @enderror
                 </div>
+                <input type="password" class="form-control" name="password" value="{{ old('password', $user->password) }}
+                    placeholder="password" />
+                <div class="validate">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                </div>
                 <input type="text" class="form-control" name="identification"
                     value="{{ $user->identification }} " placeholder="identification" min="20" />
                 <div class="validate">
