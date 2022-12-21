@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class userController extends Controller
 {
     /**
@@ -47,21 +49,19 @@ class userController extends Controller
             'identification' => "required|integer"
         ]);
 
-
         $user = User::create([
-            'name'=>$request->name,
-            'lastName'=>$request->lastName,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'password'=>bcrypt($request->password),
-            'identification'=>$request->identification
+            'name' => $request->name,
+            'lastName' => $request->lastName,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+            'identification' => $request->identification
         ]);
 
-        if ($user){
+        if ($user) {
             return redirect()->back()->with('success', 'your info has been saved in database');
-        }else{
+        } else {
             return redirect()->back()->with('fail', "your info hasn't been saved in database");
-
         }
         //
     }
@@ -89,7 +89,7 @@ class userController extends Controller
 
         $user = User::find($user->id);
         // dd($user);
-        return view('lte.user.edit',compact('user'));
+        return view('lte.user.edit', compact('user'));
         //
     }
 
@@ -102,32 +102,38 @@ class userController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
+
         $request->validate([
             'name' => "required|max:20|string",
             'lastName' => "required|max:20|string",
             'email' => "required|max:30|string",
             'phone' => "required|max:20|string",
-            'password' => "required|max:20|string",
+            'password' => "required|string",
             'identification' => "required|integer"
         ]);
 
+        if ($request->password_new !== null) {
+            $password = Hash::make($request->password_new);
+        } else {
+            $password =  Hash::make($request->password);
+        }
+        // dd($password);
 
-        $user ->update([
-            'name'=>$request->name,
-            'lastName'=>$request->lastName,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'password'=>bcrypt($request->password),
-            'identification'=>$request->identification
+        $user->update([
+            'name' => $request->name,
+            'lastName' => $request->lastName,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $password,
+            'identification' => $request->identification
         ]);
 
-        if ($user){
+        if ($user) {
             return redirect()->back()->with('success', 'your info has been saved in database');
-        }else{
+        } else {
             return redirect()->back()->with('fail', "your info hasn't been saved in database");
-
         }
-        //
     }
 
     /**

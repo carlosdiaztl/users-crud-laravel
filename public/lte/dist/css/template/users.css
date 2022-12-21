@@ -1,0 +1,7 @@
+#table-users_filter{
+    text-align: end;
+}
+
+.dataTables_paginate .pagination{
+    justify-content: flex-end;
+}
