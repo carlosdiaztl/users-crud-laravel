@@ -5,15 +5,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 row">
-                    <h1 class="mr-5 ">Users</h1>
+                    <h1 class="mr-5 ">Create</h1>
                     <span class="col-sm-6 row">
-                        <h4 class="">Create a new User</h4>
+                        {{-- <h4 class="">Create a new User</h4>
                         <button>
                             <a class="btn" href="{{ route('users.create') }} ">
                                 click here</a>
 
 
-                        </button>
+                        </button> --}}
                     </span>
 
                 </div><!-- /.col -->
