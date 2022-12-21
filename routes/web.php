@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('lte.template.dashboard.index');
+})->name('dashboard');
 
 Route::resource('users', App\Http\Controllers\userController::class)->names('users');

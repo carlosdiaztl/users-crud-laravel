@@ -15,7 +15,8 @@ class userController extends Controller
     {
         $users = User::all();
         // dd($users);
-        return view('vista', compact('users'));
+        // dd($users);
+        return view('lte.user.index', compact('users'));
     }
 
     /**
@@ -25,6 +26,7 @@ class userController extends Controller
      */
     public function create()
     {
+        return view('lte.user.create');
         //
     }
 
@@ -36,6 +38,31 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => "required|max:20|string",
+            'lastName' => "required|max:20|string",
+            'email' => "required|max:30|string",
+            'phone' => "required|max:20|string",
+            'password' => "required|max:20|string",
+            'identification' => "required|integer"
+        ]);
+
+
+        $user = User::create([
+            'name'=>$request->name,
+            'lastName'=>$request->lastName,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'password'=>$request->password,
+            'identification'=>$request->identification
+        ]);
+
+        if ($user){
+            return redirect()->back()->with('success', 'your info has been saved in database');
+        }else{
+            return redirect()->back()->with('fail', "your info hasn't been saved in database");
+
+        }
         //
     }
 
@@ -56,8 +83,13 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
+
     {
+
+        $user = User::find($user->id);
+        // dd($user);
+        return view('lte.user.edit',compact('user'));
         //
     }
 
@@ -68,8 +100,31 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name' => "required|max:20|string",
+            'lastName' => "required|max:20|string",
+            'email' => "required|max:30|string",
+            'phone' => "required|max:20|string",
+            'identification' => "required|max:20|int"
+        ]);
+
+
+        $user = User::create([
+            'name'=>$request->name,
+            'lastName'=>$request->lastName,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'identification'=>$request->identification
+        ]);
+
+        if ($user){
+            return redirect()->back()->with('success', 'your info has been saved in database');
+        }else{
+            return redirect()->back()->with('fail', "your info hasn't been saved in database");
+
+        }
         //
     }
 

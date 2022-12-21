@@ -25,7 +25,8 @@
             <h1> users</h1>
             @foreach ($users as $user )
 <div>
-    <span>{{$user->name}}
+
+    <span>{{$user->name}} {{$user->lastName}} 
          <a class="btn-warning" href="{{ route('users.edit',$user) }} " >
 
                edit
@@ -41,6 +42,8 @@
 
         </form>
      </span>
+     <span>{{$user->email}} </span>
+     <span>{{$user->phone}} </span>
 </div>
 @endforeach
 
