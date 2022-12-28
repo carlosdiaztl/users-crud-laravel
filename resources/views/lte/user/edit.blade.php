@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 row">
-                    <h1 class="mr-5 ">Users</h1>
+                    <h1 class="mr-5 ">User edit </h1>
                     {{-- <span class="col-sm-6 row">
                         <h4 class="">Create a new User</h4>
                         <button>
