@@ -72,8 +72,12 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
+        $user = User::find($user->id);
+        // dd($user);
+        dd($user);
+        return view('lte.user.show', compact('user'));
         //
     }
 
