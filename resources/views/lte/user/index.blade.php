@@ -1,24 +1,23 @@
 @extends('lte.layout')
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('lte/dist/css/template/users.css') }} ">
-
 @endsection
 @section('scripts')
-    <script src="{{ asset('lte/dist/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/jszip/jszip.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/pdfmake/pdfmake.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/pdfmake/vfs_fonts.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('lte/dist/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('lte/dist/js/template/users.js') }} "></script>
 @endsection
 @section('content')
@@ -46,11 +45,11 @@
                     <div class="card">
                         <div class="card-header ">
                             <div class="d-flex justify-content-between">
-                               
-                                
+
+
 
                                 <h3 class="card-title">Users</h3>
-                                <a href="{{route('users.create')}} " class="btn btn-success">Create User</a >
+                                <a href="{{ route('users.create') }} " class="btn btn-success">Create User</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -111,6 +110,36 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+    <h1>Servicios </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Service name</th>
+                <th>Price</th>
+                <th>Duration</th>
+
+            </tr>
+        </thead>
+        @inject('ServiceController', 'App\Http\Controllers\ServiceController')
+
+        @foreach ($services = $ServiceController->index() as $service)
+            <tbody>
+                <tr>
+                    <td>{{ $service->id }} </td>
+                    <td>{{ $service->service }} </td>
+                    <td>{{ $service->price }} </td>
+                    <td>{{ $service->duration }} </td>
+                </tr>
+            </tbody>
+        @endforeach
+
+
+    </table>
+    <h1>consulta </h1>
+    @inject('UserService', 'App\Models\UserService')
+    {{-- {{$UserService->joinUserServices()}} --}}
+
     {{-- <div class="content">|
         <div class="container-fluid">
             <table class="table">
